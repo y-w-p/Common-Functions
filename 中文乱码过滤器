@@ -1,5 +1,5 @@
 使用SpringMVC的处理方式
-在web.xml配置
+在web.xml配置（放前面一点就不会报错）
 
 <filter>      <!--注意这里是filter，不要配置成servlet-->
     <filter-name>CharactorFilter</filter-name>    <!--过滤器名称-->
