@@ -1,8 +1,13 @@
+com.ywp.interceptors.LoginInterceptor
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import javax.servlet.http.HttpSession;
 
+
+//登录拦截器
 public class LoginInterceptor implements HandlerInterceptor {
 
 
@@ -51,7 +56,22 @@ public boolean preHandle(HttpServletRequest request, HttpServletResponse respons
 
 //spring mvc配置
 
-
+<!-- 配置用于session验证的拦截器 -->
+    <!-- 
+        如果有多个拦截器满足拦截处理的要求，则依据配置的先后顺序来执行
+     -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- 拦截所有的请求，这个必须写在前面，也就是写在【不拦截】的上面 -->
+            <mvc:mapping path="/**" />
+            <!-- 但是排除下面这些，也就是不拦截请求 -->
+            <mvc:exclude-mapping path="/login.html" />
+            <mvc:exclude-mapping path="/account/login.do" />
+            <mvc:exclude-mapping path="/account/regist.do" />
+	    //拦截器全限定类名
+            <bean class="com.ywp.interceptors.LoginInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 
 
